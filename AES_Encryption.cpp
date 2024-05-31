@@ -82,7 +82,7 @@ std::array<uint8_t, 16> generate128BitKey()
 std::array<uint32_t, 4> generateRoundKey(std::array<uint32_t, 4> W, int rcValue)
 {
     std::array<uint8_t, 4> v;
-    std::memcpy(v.data(), W.data() + 3, 4); // should be W.data() + 2 not W.data() + 8 for some reason...find out later
+    std::memcpy(v.data(), W.data() + 3, 4);
 
     W[0] = extensionFieldAddition4Bytes(W[0], gFunctionForRoundKey(v, rcValue));
 
@@ -459,7 +459,7 @@ std::array<uint8_t, 16> AESdecryptRound(std::array<uint8_t, 16> valueInBytes, st
 
     // inverted shift rows layer
     std::array<uint8_t, 16> afterShiftRows = { 0 };
-    std::array<uint8_t, 16> afterShiftRowsWatch = { 0 }; // more info in "afterShiftRowsWatch.txt"
+    std::array<uint8_t, 16> afterShiftRowsWatch = { 0 }; 
 
     for (int i = 0; i < 4; i++)
     {
